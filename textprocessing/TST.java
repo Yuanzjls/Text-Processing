@@ -1,5 +1,7 @@
 package textprocessing;
 
+import java.util.StringTokenizer;
+
 /*************************************************************************
  *  Compilation:  javac TST.java
  *  Execution:    java TST < words.txt
@@ -162,23 +164,43 @@ public class TST<Value> {
 
     // test client
     public static void main(String[] args) {
-        String[] keys = {"she","sells","sea","shells","by","the","sea","shore"}; 
+        String[] keys = {"protein", "complex", "PPI", "prediction"}; 
 
     	// build symbol table from standard input
-        TST<Integer> st = new TST<Integer>();
-        for (int i = 0; i < keys.length; i++) {
-            //String key = In.readString();
-            st.put(keys[i], i);
-        }
-
-
-        // print results
-      //  for (String key : st.keys()) {
-        //    StdOut.println(key + " " + st.get(key));
-        //}
+//        TST<Integer> st = new TST<Integer>();
+//        for (int i = 0; i < keys.length; i++) {
+//            //String key = In.readString();
+//            st.put(keys[i], i);
+//        }
+        In fileIn = new In("Protein.txt");
+       
+        String text = new String();
         
+        while(fileIn.hasNextLine())
+        {
+        	text += fileIn.readLine().replaceAll("\\pP", " ");
+        }
+        
+        StringTokenizer stringTokenizer = new StringTokenizer(text);
+        TST<Integer> st = new TST<Integer>();
+        while (stringTokenizer.hasMoreTokens()) 
+        {
+        	st.put(stringTokenizer.nextToken(), st.size());
+        }
+        
+        for (String key:keys)
+        {
+        	 StdOut.println("key = " + key + ", value = "+ st.get(key));
+        }
+        
+
+//        // print results
+//        for (String key : st.keys()) {
+//           StdOut.println(key + " " + st.get(key));
+//        }
+//        
         // print value of a key
-        String key = "shells";  
-        StdOut.println("key = shells, value = "+ st.get(key));
+//        String key = "shells";  
+//        StdOut.println("key = shells, value = "+ st.get(key));
     }
 }

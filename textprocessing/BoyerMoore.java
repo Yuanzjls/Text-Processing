@@ -1,5 +1,7 @@
 package textprocessing;
 
+
+
 /***************************************************************
  *  Compilation:  javac BoyerMoore.java
  *  Execution:    java BoyerMoore pattern text
@@ -113,27 +115,29 @@ public class BoyerMoore {
         // There are two implmentations of search
  	   // one is with String and the other is an array of chars
  	   
-        String pat = "abracadabra";
-        String txt = "abacadabrabracabracadabrabrabrac-fdslfdslfdslfdslfdslfdslfdslfdslfdslfdslfdslfdslfdslfdslfdslfdslfdslfdslfdslfdslfdskjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgkjgad";
-        char[] pattern = pat.toCharArray();
-        char[] text    = txt.toCharArray();
+    	In fileIn = new In("Hard disk.txt");
+    	
+    	
+        String text = new String();
+        
+        while (fileIn.hasNextLine())
+		{
+			text += fileIn.readLine();
+			
+		}
 
-        BoyerMoore boyermoore1 = new BoyerMoore(pat);
-        BoyerMoore boyermoore2 = new BoyerMoore(pattern, 256);
-        int offset1 = boyermoore1.search(txt);
-        int offset2 = boyermoore2.search(text);
+        String[] pat = {"hard", "disk", "hard disk", "hard drive", "hard dist", "xltpru"};
 
-        // print results
-        StdOut.println("text:    " + txt);
-
-        StdOut.print("pattern: ");
-        for (int i = 0; i < offset1; i++)
-            StdOut.print(" ");
-        StdOut.println(pat + " at pos " + offset1);
-
-        StdOut.print("pattern: ");
-        for (int i = 0; i < offset2; i++)
-            StdOut.print(" ");
-        StdOut.println(pat + " at pos " + offset2);
+        
+        
+        //System.out.println(pat);
+        
+        for (int i = 0; i < pat.length; i++)
+		{
+        	BoyerMoore boyermoore1 = new BoyerMoore(pat[i]);
+			int offset1 = boyermoore1.search(text);
+			System.out.println("The offset for " + pat[i] + " is " + offset1);
+		}
+        
       }
 }

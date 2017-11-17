@@ -112,29 +112,29 @@ public class KMP {
        // There are two implmentations of search
 	   // one is with String and the other is an array of chars
 	   
-	   String pat = "abracadabra";
-       String txt = "abacadabrabracabracadabrabrabracad";
-	   
-       char[] pattern = pat.toCharArray();
-       char[] text    = txt.toCharArray();
+	   In fileIn = new In("Hard disk.txt");
+   	
+   	
+       String text = new String();
+       
+       while (fileIn.hasNextLine())
+		{
+			text += fileIn.readLine();
+			
+		}
 
-       KMP kmp1 = new KMP(pat);
-       int offset1 = kmp1.search(txt);
+       String[] pat = {"hard", "disk", "hard disk", "hard drive", "hard dist", "xltpru"};
 
-       KMP kmp2 = new KMP(pattern, 256);
-       int offset2 = kmp2.search(text);
-
-       // print results
-       StdOut.println("text:    " + txt);
-
-       StdOut.print("pattern: ");
-       for (int i = 0; i < offset1; i++)
-           StdOut.print(" ");
-       StdOut.println(pat + " at pos " + offset1);
-
-       StdOut.print("pattern: ");
-       for (int i = 0; i < offset2; i++)
-           StdOut.print(" ");
-       StdOut.println(pat + " at pos " + offset2);
+       
+       
+       //System.out.println(pat);
+       
+       for (int i = 0; i < pat.length; i++)
+		{
+       	KMP kmp = new KMP(pat[i]);
+			int offset1 = kmp.search(text);
+			System.out.println("The offset for " + pat[i] + " is " + offset1);
+		}
+       
    }
 }

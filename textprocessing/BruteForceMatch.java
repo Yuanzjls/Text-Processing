@@ -109,41 +109,29 @@ public class BruteForceMatch {
        // There are two implmentations of search
 	   // one is with String and the other is an array of chars
 	   
-       String pat = "abracadabra";
-       String txt = "abacadabrabracabracadabrabrabracad";
-       char[] pattern = pat.toCharArray();
-       char[] text    = txt.toCharArray();
+	   In fileIn = new In("Hard disk.txt");
+   	
+   	
+       String text = new String();
+       
+       while (fileIn.hasNextLine())
+		{
+			text += fileIn.readLine();
+			
+		}
 
-       int offset1a = search1(pat, txt);
-       int offset2a = search2(pat, txt);
-       int offset1b = search1(pattern, text);
-       int offset2b = search2(pattern, text);
+       String[] pat = {"hard", "disk", "hard disk", "hard drive", "hard dist", "xltpru"};
 
-       // print results
-       StdOut.println("text:    " + txt);
-
-       // from brute force search method 1a
-       StdOut.print("pattern: ");
-       for (int i = 0; i < offset1a; i++)
-           StdOut.print(" ");
-       StdOut.println(pat + " at pos " + offset1a);
-
-       // from brute force search method 2a
-       StdOut.print("pattern: ");
-       for (int i = 0; i < offset2a; i++)
-           StdOut.print(" ");
-       StdOut.println(pat + " at pos " + offset2a);
-
-       // from brute force search method 1b
-       StdOut.print("pattern: ");
-       for (int i = 0; i < offset1b; i++)
-           StdOut.print(" ");
-       StdOut.println(pat + " at pos " + offset1b);
-
-       // from brute force search method 2b
-       StdOut.print("pattern: ");
-       for (int i = 0; i < offset2b; i++)
-           StdOut.print(" ");
-       StdOut.println(pat + " at pos " + offset2b);
+       
+       
+       //System.out.println(pat);
+       
+       for (int i = 0; i < pat.length; i++)
+		{
+    	   //BoyerMoore boyermoore1 = new BoyerMoore(pat[i]);
+			int offset1 = search1(pat[i], text);
+			System.out.println("The offset for " + pat[i] + " is " + offset1);
+		}
+       
    }
 }
