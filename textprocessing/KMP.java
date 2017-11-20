@@ -40,7 +40,7 @@ public class KMP {
 
    // create the DFA from a String
    public KMP(String pat) {
-       this.R = 256;
+       this.R = 0xffff;
        this.pat = pat;
 
        // build DFA from pattern
@@ -126,8 +126,7 @@ public class KMP {
        String[] pat = {"hard", "disk", "hard disk", "hard drive", "hard dist", "xltpru"};
 
        
-       
-       //System.out.println(pat);
+
        
        for (int i = 0; i < pat.length; i++)
 		{
